@@ -1,29 +1,26 @@
 var stack: [Int] = []
-var index = -1
 
 let push = {(num: Int) -> Void in
     stack.append(num)
-    index += 1
 }
 
 let pop = {() -> Int in
-    guard index != -1 else { return -1 }
-    let temp = stack.remove(at: index)
-    index -= 1
-    return temp
+    if stack.count == 0 {
+        return -1
+    }
+    return stack.removeLast()
 }
 
 let size = {() -> Int in
-    index + 1
+    stack.count
 }
 
 let empty = {() -> Int in
-    (index == -1 ? 1 : 0)
+    stack.isEmpty ? 1 : 0
 }
 
 let top = {() -> Int in
-    guard index != -1 else { return -1 }
-    return stack[index]
+    stack.last ?? -1
 }
 
 let n = Int(readLine()!)!
@@ -44,3 +41,4 @@ for _ in 1...n {
         break
     }
 }
+
